@@ -11,7 +11,6 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { supabase } from "@/lib/supabase"
 import { Plus, X } from "lucide-react"
-import { useLanguage } from "@/contexts/language-context"
 
 interface ServiceFormProps {
   service?: {
@@ -27,7 +26,6 @@ interface ServiceFormProps {
 
 export default function ServiceForm({ service, isEdit = false }: ServiceFormProps) {
   const router = useRouter()
-  const { t } = useLanguage()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     title: service?.title || "",
@@ -83,7 +81,7 @@ export default function ServiceForm({ service, isEdit = false }: ServiceFormProp
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{isEdit ? t("Edit Service") : t("Add New Service")}</CardTitle>
+        <CardTitle>{isEdit ? "Edit Service" : "Add New Service"}</CardTitle>
       </CardHeader>
       <CardContent>
         {error && <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-md text-red-600">{error}</div>}

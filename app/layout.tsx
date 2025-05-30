@@ -1,9 +1,15 @@
 import type React from "react"
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
 import "./globals.css"
+import { LanguageProvider } from "@/contexts/language-context"
+import { AuthProvider } from "@/contexts/auth-context"
 
-export const metadata = {
-  title: "Office Admin Dashboard",
-  description: "Admin dashboard for office management",
+const inter = Inter({ subsets: ["latin"] })
+
+export const metadata: Metadata = {
+  title: "Office Website",
+  description: "Bilingual office website with admin dashboard",
     generator: 'v0.dev'
 }
 
@@ -14,7 +20,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={inter.className}>
+        <LanguageProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </LanguageProvider>
+      </body>
     </html>
   )
 }
